@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Cash Loan App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<div sec:authorize="hasRole('ADMIN')">
+  <div class="flex flex-col items-center justify-center  mx-auto md:h-screen lg:py-0">
+    <div class="mb-4 text-[#06507b] text-2xl font-bold" > Users List</div>
+    <div class="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-5 gap-6">
+      <div th:each="p : ${userlist}"
+           class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-200 dark:border-gray-100 text-[#06507b]">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+        </svg>
+
+        <p>
+        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-[#06507b]" th:text="${p.role.role}"></h5>
+        </p>
+        Username:
+        <p class="mb-3 font-normal text-gray-500 dark:text-[#06507b]" th:text="${p.username}"></p>
+        <div class="mb-3 font-normal text-gray-500 dark:text-[#06507b]" th:if="${p.role.equalsIgnoreCase('BORROWER')}">Full Name: <p class="font-bold" th:text="${p.borrower.fullName}"></p>Birth Day:  <p class="font-bold" th:text="${p.borrower.birthdate}"></p></div>
+        <div class="mb-3 font-normal text-gray-500 dark:text-[#06507b]" th:if="${p.role.equalsIgnoreCase('MANAGER')}">Full Name: <p class="font-bold" th:text="${p.manager.fullName}"></p>Enable Access:  <p class="font-bold" th:text="${p.manager.enableAccess}"></p></div>
+        <div class="mb-3 font-normal text-gray-500 dark:text-[#06507b]" th:if="${p.role.equalsIgnoreCase('LENDER')}">Full Name: <p class="font-bold" th:text="${p.lender.fullName}"></p>Enable Access:  <p class="font-bold" th:text="${p.lender.enableAccess}"></p></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

@@ -3,15 +3,12 @@
       xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Cash Loan App</title>
+    <title>CashLoan</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<!-- NavBar -->
-<!--<div th:replace="~{fragments/header :: header}"></div>-->
 
-<!--admin-->
-<div sec:authorize="hasRole('ADMIN')">
+<!--div sec:authorize="hasRole('ADMIN')">
     <div class="flex flex-col items-center justify-center  mx-auto md:h-screen lg:py-0">
         <div class="mb-4 text-[#06507b] text-2xl" > WELCOME ADMIN: <b>[[${#authentication.getPrincipal().username}]]</b></div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
@@ -63,10 +60,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-<!--Rest of the Roles-->
-<div sec:authorize="hasAnyRole('MANAGER','LENDER','BORROWER')">
+<div sec:authorize="hasAnyRole('MANAGER','LENDER','BORROWER','ADMIN')">
     <div class="flex flex-col items-center justify-center  mx-auto md:h-screen lg:py-0">
     <span class="font-bold text-2xl text-[#06507b]">
             You are logged as: <b>[[${#authentication.getPrincipal().username}]]</b>
